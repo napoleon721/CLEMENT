@@ -109,6 +109,10 @@ section.block{padding-block:clamp(5rem,12vw,12rem)}
 .proj.flip .vis{grid-column:1/span 6;grid-row:1}
 .frame{position:relative;overflow:hidden;background:var(--panel);aspect-ratio:4/5;max-height:80vh;width:100%}
 .cap{margin-top:.7rem;color:var(--dim)}
+.visit{align-self:flex-start;display:inline-flex;gap:.6rem;align-items:center;padding:.8rem 1.3rem;border:1px solid var(--dim);border-radius:99px;color:var(--fg);transition:background .3s,color .3s,border-color .3s}
+.visit:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.visit span{transition:transform .4s var(--ease)}
+.visit:hover span{transform:translate(2px,-2px)}
 .role{color:var(--mute)}
 .pts{display:flex;flex-direction:column;gap:.8rem;font-size:.98rem;line-height:1.45;color:#CFC9C2}
 .pts li{padding-left:1.1rem;position:relative}
@@ -219,6 +223,7 @@ footer a:hover{color:var(--fg)}
             <li>Monitor de alertas por antigüedad de backlog, persistencia en Firebase y acceso por rol: Master, Operador y Auditor.</li>
           </ul>
           <ul class="tags mono"><li>Firebase Firestore</li><li>Cloud Storage</li><li>MTBF</li><li>Pareto</li><li>Multi-rol</li></ul>
+          <a class="visit mono" href="https://cocacola-20d01.web.app/dashboard-coca-cola" target="_blank" rel="noopener">Ver proyecto en vivo <span aria-hidden="true">↗</span></a>
         </div>
         <div class="vis">
           <figure class="frame"><div class="zoom" data-v="pareto" data-seed="3"></div></figure>
@@ -238,6 +243,7 @@ footer a:hover{color:var(--fg)}
             <li>Disponibilidad protegida con Error Boundaries y pruebas de despliegue continuo.</li>
           </ul>
           <ul class="tags mono"><li>React 18</li><li>Vite</li><li>Tailwind CSS</li><li>Firestore</li><li>Apps Script</li><li>RBAC</li><li>Error Boundaries</li></ul>
+          <a class="visit mono" href="https://db-doctorsv-c3a80.web.app/" target="_blank" rel="noopener">Ver proyecto en vivo <span aria-hidden="true">↗</span></a>
         </div>
         <div class="vis">
           <figure class="frame"><div class="zoom" data-v="grid" data-seed="5"></div></figure>

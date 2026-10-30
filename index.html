@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23000%27/%3E%3Ctext x=%2716%27 y=%2723%27 font-size=%2722%27 text-anchor=%27middle%27 fill=%27%23EFEAE4%27 font-family=%27sans-serif%27%3En%3C/text%3E%3C/svg%3E">
+<title>CLEMENT by Napoleon</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portafolio de Carlos Napoleón García Gutiérrez: ingeniería aeronáutica, desarrollo full-stack y análisis de datos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400&family=Hanken+Grotesk:wght@200;300;400;500&display=swap">
+<style>
+/* Concepto: fotolibro en negro. Una palabra enorme, texto callado, y "fotogramas" que son tableros de datos en vez de fotos. */
+:root{
+  --bg:#000000;
+  --fg:#EFEAE4;
+  --mute:#8D8983;
+  --dim:#4A4743;
+  --line:#1F1E1C;
+  --panel:#0C0B0A;
+  --accent:#E08A4C;
+  --sans:'Hanken Grotesk','Helvetica Neue',Arial,sans-serif;
+  --mono:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;
+  --gutter:clamp(16px,5vw,96px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:300;font-size:clamp(16px,1.1vw + 6px,20px);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+::selection{background:var(--fg);color:var(--bg)}
+.wrap{padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:400}
+.mute{color:var(--mute)}
+h1,h2,h3,p,dl,dd,ul,figure{margin:0}
+ul{padding:0;list-style:none}
+h2{font-weight:200;font-size:clamp(2.4rem,6.2vw,6rem);line-height:.98;letter-spacing:-.035em;text-wrap:balance}
+h3{font-weight:300;font-size:clamp(1.6rem,2.8vw,2.6rem);line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
+
+.progress{position:fixed;left:0;right:0;top:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;z-index:30}
+
+/* Navegación */
+.nav{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:calc(env(safe-area-inset-top,0px) + 1rem);padding-bottom:1.4rem;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px));background:linear-gradient(var(--bg) 20%,transparent)}
+.nav nav{display:flex;gap:clamp(.9rem,2.4vw,2.2rem)}
+.nav a{position:relative;color:var(--mute);transition:color .3s}
+.nav a:hover,.brand{color:var(--fg)}
+.nav nav a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--fg);transform:scaleX(0);transform-origin:0 50%;transition:transform .5s var(--ease)}
+.nav nav a:hover::after{transform:scaleX(1)}
+
+/* Héroe */
+.hero{padding-top:calc(env(safe-area-inset-top,0px) + 5.5rem);overflow:hidden}
+.eyebrow{color:var(--mute);margin-bottom:clamp(.6rem,1.6vw,1.4rem)}
+.wm{overflow:hidden;padding-bottom:.16em;margin-bottom:-.04em}
+.wm-in{display:inline-block;white-space:nowrap;font-weight:200;font-size:21vw;line-height:.82;letter-spacing:-.045em;color:var(--fg)}
+.ch{display:inline-block}
+.intro{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(1.5rem,3vw,3rem) 1.5rem;margin-top:clamp(2.5rem,6vw,6rem)}
+.lead{grid-column:1/span 6;font-size:clamp(1.5rem,2.8vw,2.8rem);line-height:1.12;letter-spacing:-.02em;font-weight:300;text-wrap:balance}
+.meta{grid-column:8/span 5;display:grid;grid-template-columns:1fr 1fr;gap:2rem 1.5rem;align-content:start;padding-top:.5rem}
+.meta div{min-width:0}
+.meta dt{color:var(--mute);font-size:.82rem;margin-bottom:.4rem}
+.meta dd{font-size:.98rem;line-height:1.4;overflow-wrap:anywhere}
+.dot-live{display:inline-block;width:.5rem;height:.5rem;border-radius:50%;background:var(--accent);margin-right:.5rem;vertical-align:.08em;animation:blink 2.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+
+/* Tira de fotogramas */
+.strip-wrap{margin-top:clamp(3rem,7vw,7rem);height:clamp(300px,36vw,620px);overflow:hidden}
+.strip{display:flex;align-items:flex-start;gap:clamp(.6rem,1.4vw,1.4rem);width:max-content;margin-left:-6vw;will-change:transform}
+.tile{flex:none;position:relative;overflow:hidden;background:var(--panel);width:clamp(150px,var(--w),460px);aspect-ratio:var(--ar);margin-top:var(--mt)}
+.tile .zoom,.frame .zoom{position:absolute;inset:0;will-change:transform}
+.tile figcaption{position:absolute;left:.7rem;top:.6rem;z-index:2;color:var(--mute);pointer-events:none}
+svg{display:block;width:100%;height:100%}
+svg .t{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase}
+svg .t.mute{fill:var(--mute)} svg .t.fg{fill:var(--fg)} svg .t.acc{fill:var(--accent)} svg .t.low{text-transform:none;letter-spacing:.02em;font-size:11px}
+svg .ln{stroke:var(--fg);stroke-opacity:.2;fill:none;stroke-width:1}
+svg .dash{stroke-dasharray:3 4}
+svg .cum{stroke:var(--fg);stroke-width:1.5;fill:none}
+svg .area{fill:var(--fg);fill-opacity:.06}
+svg .dot{fill:var(--fg);fill-opacity:.14}
+svg .dot.on{fill-opacity:.8}
+svg .dot.acc{fill:var(--accent);fill-opacity:1;animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{50%{fill-opacity:.25}}
+svg .big{font-family:var(--sans);font-weight:200;font-size:64px;fill:var(--fg);letter-spacing:-.04em}
+svg .chk{stroke:var(--accent);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* Secciones */
+section.block{padding-block:clamp(5rem,12vw,12rem)}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2.5rem,6vw,5.5rem)}
+.head .mono{color:var(--mute)}
+
+/* Cifras */
+.stats{border-top:1px solid var(--line)}
+.stat{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:baseline;gap:1rem 2rem;padding-block:clamp(1.4rem,3vw,2.6rem);border-bottom:1px solid var(--line);transition:background .5s}
+.stat:hover{background:var(--panel)}
+.num{font-weight:200;font-size:clamp(3.6rem,10.5vw,10rem);line-height:.9;letter-spacing:-.05em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stat p{font-size:clamp(1.05rem,1.6vw,1.5rem);line-height:1.3;max-width:34ch}
+.stat .src{display:block;margin-top:.7rem;color:var(--mute)}
+
+/* Trabajo */
+.proj{display:grid;grid-template-columns:repeat(12,1fr);gap:2.5rem 1.5rem;align-items:center;padding-block:clamp(2.5rem,6vw,6rem);border-top:1px solid var(--line)}
+.proj:first-of-type{border-top:0;padding-top:0}
+.proj-text{grid-column:1/span 5;display:flex;flex-direction:column;gap:1.4rem;min-width:0}
+.proj .frame{grid-column:7/span 6}
+.proj.flip .proj-text{grid-column:8/span 5;grid-row:1}
+.proj.flip .frame{grid-column:1/span 6;grid-row:1}
+.frame{position:relative;overflow:hidden;background:var(--panel);aspect-ratio:4/5;max-height:80vh;width:100%}
+.cap{margin-top:.7rem;color:var(--dim)}
+.role{color:var(--mute)}
+.pts{display:flex;flex-direction:column;gap:.8rem;font-size:.98rem;line-height:1.45;color:#CFC9C2}
+.pts li{padding-left:1.1rem;position:relative}
+.pts li::before{content:"";position:absolute;left:0;top:.7em;width:.45rem;height:1px;background:var(--mute)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tags li{padding:.3rem .6rem;border:1px solid var(--line);color:var(--mute);border-radius:99px}
+
+/* Trayectoria */
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,4fr) minmax(0,6fr);gap:1rem 2rem;padding-block:clamp(1.5rem,3vw,2.6rem);border-bottom:1px solid var(--line);transition:background .5s}
+.row:hover{background:var(--panel)}
+.row h3{font-size:clamp(1.3rem,2vw,1.9rem)}
+.row .mono{color:var(--mute);padding-top:.4rem}
+.row .org{margin-top:.5rem;color:var(--mute);font-size:.95rem}
+
+/* Stack */
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:clamp(1rem,2vw,2rem);margin-bottom:clamp(3rem,6vw,6rem)}
+.track{display:flex;width:max-content;animation:slide 60s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{font-weight:200;font-size:clamp(2.4rem,6vw,5.5rem);letter-spacing:-.035em;line-height:1;padding-right:clamp(1.2rem,3vw,3rem);white-space:nowrap}
+.track span:nth-child(even){color:var(--dim)}
+@keyframes slide{to{transform:translateX(-50%)}}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:2.5rem 2rem}
+.skills h3{font-family:var(--mono);font-size:.68rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:1rem}
+.skills li{padding-block:.35rem;border-bottom:1px solid var(--line);font-size:.98rem}
+
+/* Formación */
+.edu{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:2.5rem 2rem}
+.edu h3{font-size:clamp(1.3rem,1.8vw,1.7rem);margin:.7rem 0 .4rem}
+.edu p{color:var(--mute);font-size:.95rem}
+
+/* Contacto */
+.contact{padding-block:clamp(5rem,12vw,12rem) 3rem}
+.big-mail{display:inline-block;font-weight:200;font-size:clamp(1.9rem,6.2vw,6.6rem);line-height:1;letter-spacing:-.04em;overflow-wrap:anywhere;border-bottom:1px solid var(--dim);padding-bottom:.15em;transition:border-color .4s,color .4s}
+.big-mail:hover{border-color:var(--accent);color:var(--accent)}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 2rem;margin-top:2rem}
+.btn{font:inherit;background:none;color:var(--fg);border:1px solid var(--dim);border-radius:99px;padding:.7rem 1.3rem;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.btn:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:2rem;margin-top:clamp(3rem,7vw,6rem);border-top:1px solid var(--line);padding-top:2rem}
+.links dt{color:var(--mute);margin-bottom:.5rem}
+.links a{border-bottom:1px solid var(--dim);transition:border-color .3s}
+.links a:hover{border-color:var(--fg)}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-block:2rem 3rem;color:var(--dim)}
+footer a:hover{color:var(--fg)}
+
+@media (max-width:900px){
+  .lead,.meta{grid-column:1/-1}
+  .proj-text,.proj.flip .proj-text{grid-column:1/-1;grid-row:auto}
+  .proj .frame,.proj.flip .frame{grid-column:1/-1;grid-row:auto}
+  .stat,.row{grid-template-columns:1fr}
+  .nav nav a:nth-child(n+4){display:none}
+}
+@media (max-width:480px){.nav nav a:nth-child(n+3){display:none}.meta{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.track,.dot-live,svg .dot.acc{animation:none}*{scroll-behavior:auto}}
+</style>
+
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="brand mono" href="#top">CLEMENT by Napoleon</a>
+  <nav class="mono" aria-label="Secciones">
+    <a href="#trabajo">Trabajo</a>
+    <a href="#cifras">Cifras</a>
+    <a href="#trayectoria">Trayectoria</a>
+    <a href="#stack">Stack</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow mono">Carlos Napoleón García Gutiérrez · Portafolio 2026</p>
+      <h1 class="wm" aria-label="napoleon"><span class="wm-in" aria-hidden="true">napoleon</span></h1>
+      <div class="intro">
+        <p class="lead">Ingeniero aeronáutico que programa. Sistemas de mantenimiento y operaciones donde cada dato se puede rastrear.</p>
+        <dl class="meta">
+          <div><dt>Rol</dt><dd>Full-stack, datos y operaciones aeronáuticas</dd></div>
+          <div><dt>Formación</dt><dd>Ing. Aeronáutica, UDB, 5.º año</dd></div>
+          <div><dt>Idiomas</dt><dd>Español, inglés B1</dd></div>
+          <div><dt>Base</dt><dd><span class="dot-live" aria-hidden="true"></span>San Salvador, El Salvador</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="strip-wrap" aria-hidden="true">
+      <div class="strip" id="strip"></div>
+    </div>
+  </section>
+
+  <section class="block" id="trabajo">
+    <div class="wrap">
+      <div class="head">
+        <h2>Trabajo<br>seleccionado</h2>
+        <p class="mono">4 proyectos · 2023 a hoy</p>
+      </div>
+
+      <article class="proj">
+        <div class="proj-text rv">
+          <p class="mono role">Full-stack y datos · Planta embotelladora Coca-Cola · Ago 2026 a hoy</p>
+          <h3>Dashboard de mantenimiento SAP PM</h3>
+          <ul class="pts">
+            <li>Monitoreo en tiempo real de más de 260 avisos y órdenes de trabajo (transacciones IW28 e IW29).</li>
+            <li>Ingesta masiva con upsert y sanitización estricta de archivos Excel y CSV.</li>
+            <li>Filtros por estado, tipo, ubicación técnica, equipo y fecha. Métricas MTBF, Pareto 80/20 y gasto real en USD por orden.</li>
+            <li>Alertas de severidad según la antigüedad del backlog y acceso por rol: Master, Operador y Auditor.</li>
+          </ul>
+          <ul class="tags mono"><li>Firebase Firestore</li><li>Cloud Storage</li><li>MTBF</li><li>Pareto</li><li>Multi-rol</li></ul>
+        </div>
+        <div>
+          <figure class="frame"><div class="zoom" data-v="pareto" data-seed="3"></div></figure>
+          <p class="cap mono">Ilustración del tipo de análisis, no son datos reales</p>
+        </div>
+      </article>
+
+      <article class="proj flip">
+        <div class="proj-text rv">
+          <p class="mono role">Lead full-stack · DoctorSV · Jul a Sep 2026</p>
+          <h3>Telemedicina y control operativo</h3>
+          <ul class="pts">
+            <li>SPA diseñada desde cero para gestionar el plano interactivo de 170 espacios y a varios supervisores.</li>
+            <li>Sincronización en tiempo real con latencia menor a 500 ms entre dispositivos.</li>
+            <li>Control de acceso por roles (RBAC) en varios niveles, auto check-in, asignación algorítmica y reportes ejecutivos en vivo.</li>
+            <li>Integración bidireccional con Google Sheets mediante Apps Script y endpoints REST para nóminas e inventario.</li>
+          </ul>
+          <ul class="tags mono"><li>React 18</li><li>Vite</li><li>Tailwind CSS</li><li>Firestore</li><li>Apps Script</li><li>RBAC</li></ul>
+        </div>
+        <div>
+          <figure class="frame"><div class="zoom" data-v="grid" data-seed="5"></div></figure>
+          <p class="cap mono">Ilustración del plano de 170 espacios</p>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-text rv">
+          <p class="mono role">Jefe de Departamento de Ramas · Fuerza Aérea de El Salvador · 2023 a 2025</p>
+          <h3>Proyecto UAV</h3>
+          <ul class="pts">
+            <li>100% de los hitos cumplidos en 2 años, con un presupuesto de $2,500 para todo el equipo del dron y sin sobrecostos.</li>
+            <li>40% menos de espera en materiales críticos tras rediseñar recepción, almacenamiento y despacho.</li>
+            <li>0 incidentes de seguridad en 20 pruebas de evaluación y 4 vuelos exitosos, con checklists de verificación previa.</li>
+          </ul>
+          <ul class="tags mono"><li>Control de inventario</li><li>Trazabilidad documental</li><li>Checklists</li><li>Gestión de proveedores</li></ul>
+        </div>
+        <div>
+          <figure class="frame"><div class="zoom" data-v="ticks" data-seed="1"></div></figure>
+          <p class="cap mono">Ilustración de una verificación previa</p>
+        </div>
+      </article>
+
+      <article class="proj flip">
+        <div class="proj-text rv">
+          <p class="mono role">Colíder de equipo de 4 · Curso DDP106, UDB · 2026</p>
+          <h3>Dashboard de fallas estructurales SRM/AD</h3>
+          <ul class="pts">
+            <li>Diseño de un tablero para detectar fallas estructurales recurrentes en flota a partir de datos de reparación.</li>
+            <li>EAP, matriz de marco lógico, Project Charter y planificación de alcance y calidad con enfoque PMBOK/PMI.</li>
+          </ul>
+          <ul class="tags mono"><li>SRM</li><li>AD</li><li>PMBOK</li><li>Marco lógico</li><li>Project Charter</li></ul>
+        </div>
+        <div>
+          <figure class="frame"><div class="zoom" data-v="heat" data-seed="2"></div></figure>
+          <p class="cap mono">Ilustración de recurrencia por zona</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="cifras">
+    <div class="wrap">
+      <div class="head">
+        <h2>Impacto<br>medido</h2>
+        <p class="mono">6 resultados del CV</p>
+      </div>
+      <ul class="stats">
+        <li class="stat rv"><span class="num" data-to="260" data-suf="+">260+</span><p>avisos y órdenes de trabajo de SAP PM en monitoreo continuo<span class="src mono">Dashboard de mantenimiento · Coca-Cola</span></p></li>
+        <li class="stat rv"><span class="num" data-to="170">170</span><p>espacios en un plano interactivo con varios supervisores<span class="src mono">Telemedicina · DoctorSV</span></p></li>
+        <li class="stat rv"><span class="num" data-pre="&lt;" data-to="500" data-suf=" ms">&lt;500 ms</span><p>de latencia entre dispositivos con Firestore en tiempo real<span class="src mono">Telemedicina · DoctorSV</span></p></li>
+        <li class="stat rv"><span class="num" data-to="100" data-suf="%">100%</span><p>de los hitos cumplidos en 2 años con $2,500 de presupuesto<span class="src mono">Proyecto UAV · FAS</span></p></li>
+        <li class="stat rv"><span class="num" data-pre="−" data-to="40" data-suf="%">−40%</span><p>en tiempos de espera de materiales críticos<span class="src mono">Proyecto UAV · FAS</span></p></li>
+        <li class="stat rv"><span class="num" data-to="0">0</span><p>incidentes de seguridad en 20 pruebas, 4 vuelos y 8 meses de práctica en hangar<span class="src mono">FAS · ATS</span></p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="trayectoria">
+    <div class="wrap">
+      <div class="head">
+        <h2>Operaciones<br>y regulación</h2>
+        <p class="mono">Donde aprendí a trabajar con normas</p>
+      </div>
+      <div class="rows">
+        <article class="row rv">
+          <p class="mono">2026 a hoy</p>
+          <div><h3>Operador de almacén</h3><p class="org">Avianca · Recepción, custodia y despacho de materiales aeronáuticos</p></div>
+          <ul class="pts">
+            <li>Verifico la trazabilidad de componentes (FAA 8130-3, EASA Form 1, CoC), número de parte, serie y vida útil, y registro cada movimiento en AMOS y SAP.</li>
+            <li>Resguardo rotables y reparables con etiquetado Serviceable, Unserviceable y Scrap, protección ESD y control de químicos (HazMat).</li>
+            <li>Atiendo despacho de piezas y kits para órdenes de trabajo, administro el Tool Crib con control FOD y hago conteos cíclicos.</li>
+          </ul>
+        </article>
+        <article class="row rv">
+          <p class="mono">2024 a 2025</p>
+          <div><h3>Práctica profesional</h3><p class="org">ATS, Aeronautical Technical Skills · Ilopango</p></div>
+          <ul class="pts">
+            <li>0 incidentes de seguridad en 8 meses, aplicando protocolos FOD y control de almacén en el hangar.</li>
+            <li>Documentación técnica alineada a Sistemas Integrados de Gestión para 20 inspecciones de aeronaves, sin no conformidades.</li>
+          </ul>
+        </article>
+        <article class="row rv">
+          <p class="mono">2023</p>
+          <div><h3>Asistente técnico regulatorio</h3><p class="org">Autoridad de Aviación Civil de El Salvador</p></div>
+          <ul class="pts">
+            <li>20 informes técnicos oficiales bajo RAC 145 y RAC 19 para estandarizar la certificación aérea.</li>
+            <li>0 observaciones en las auditorías internas de cumplimiento.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="stack">
+    <div class="wrap">
+      <div class="head">
+        <h2>Herramientas</h2>
+        <p class="mono">Software, datos e ingeniería</p>
+      </div>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="track" id="track"></div>
+    </div>
+    <div class="wrap">
+      <div class="skills">
+        <div class="rv"><h3>Desarrollo</h3><ul><li>React, Vite, Tailwind CSS</li><li>JavaScript, HTML, CSS</li><li>Firebase: Firestore, Auth, Hosting, Storage</li><li>Google Apps Script y APIs REST</li><li>RBAC, Rust</li></ul></div>
+        <div class="rv"><h3>Datos y calidad</h3><ul><li>Python: Pandas, NumPy, Matplotlib</li><li>SAP PM, MTBF, Pareto</li><li>Dashboards y KPIs</li><li>Apache JMeter Intro y Pro</li><li>Excel avanzado</li></ul></div>
+        <div class="rv"><h3>Operaciones MRO</h3><ul><li>AMOS y SAP</li><li>Recepción, custodia y despacho</li><li>Trazabilidad documental</li><li>Gestión de scrap</li><li>FOD, ESD, HazMat</li></ul></div>
+        <div class="rv"><h3>Normativa</h3><ul><li>RAC 145 mantenimiento</li><li>RAC 19 SMS</li><li>OACI Anexos 6 y 8</li><li>Sistemas Integrados de Gestión</li></ul></div>
+        <div class="rv"><h3>Ingeniería</h3><ul><li>Autodesk Inventor, Onshape</li><li>ANSYS</li><li>Informes regulatorios</li><li>Registros de aeronavegabilidad</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
+        <h2>Formación</h2>
+        <p class="mono">Estudios, certificaciones e idiomas</p>
+      </div>
+      <div class="edu">
+        <div class="rv"><p class="mono mute">2017 a hoy</p><h3>Ingeniería Aeronáutica</h3><p>Universidad Don Bosco, 5.º año en curso</p></div>
+        <div class="rv"><p class="mono mute">Completado</p><h3>Apache JMeter Intro y Pro</h3><p>BlazeMeter University</p></div>
+        <div class="rv"><p class="mono mute">Idiomas</p><h3>Español nativo, inglés B1</h3><p>Lectura técnica fluida de manuales AMM, CMM y SRM</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <p class="mono mute" style="margin-bottom:1.4rem">Contacto</p>
+      <a class="big-mail" id="mail" href="mailto:cccalixo1998@gmail.com">cccalixo1998@gmail.com</a>
+      <div class="actions">
+        <button class="btn" id="copy" type="button">Copiar correo</button>
+        <span class="mono mute" id="flash" role="status" aria-live="polite"></span>
+      </div>
+      <dl class="links">
+        <div><dt class="mono">Teléfono</dt><dd>7747-4012</dd></div>
+        <div><dt class="mono">LinkedIn</dt><dd><a href="https://linkedin.com/in/napoleon721" target="_blank" rel="noopener">linkedin.com/in/napoleon721</a></dd></div>
+        <div><dt class="mono">GitHub</dt><dd><a href="https://github.com/napoleon721" target="_blank" rel="noopener">github.com/napoleon721</a></dd></div>
+        <div><dt class="mono">Disponibilidad</dt><dd>Turnos rotativos diurnos y nocturnos</dd></div>
+      </dl>
+      <footer class="mono">
+        <span>© 2026 Carlos Napoleón García Gutiérrez · San Salvador</span>
+        <a href="#top">Volver arriba</a>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(s,r){return (r||document).querySelector(s)};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+
+  /* ---------- Fotogramas: gráficas generadas, no son datos reales ---------- */
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  function T(x,y,s,c,a,extra){return '<text x="'+x+'" y="'+y+'" class="t '+(c||'mute')+' '+(extra||'')+'" text-anchor="'+(a||'start')+'">'+s+'</text>'}
+  function S(b){return '<svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'+b+'</svg>'}
+
+  var V = {
+    pareto:function(seed){
+      var r=rng(seed),v=[],a=100,i;
+      for(i=0;i<14;i++){v.push(a*(.85+r()*.3));a*=.74}
+      var tot=v.reduce(function(x,y){return x+y},0),c=0,bars='',pts=[];
+      v.forEach(function(x,i){
+        var h=x/v[0]*190,X=42+i*23,hot=c/tot<.8;
+        c+=x;
+        bars+='<rect x="'+X+'" y="'+(400-h)+'" width="16" height="'+h+'" fill="'+(hot?'var(--accent)':'var(--fg)')+'" fill-opacity="'+(hot?1:.28)+'"/>';
+        pts.push((X+8)+','+(400-c/tot*280).toFixed(1));
+      });
+      return S(T(32,52,'Pareto · fallas por equipo','fg')+T(32,70,'Acumulado 80/20','mute')+
+        '<line class="ln" x1="32" x2="368" y1="400" y2="400"/><line class="ln dash" x1="32" x2="368" y1="176" y2="176"/>'+
+        T(368,168,'80 %','mute','end')+bars+'<polyline class="cum" points="'+pts.join(' ')+'"/>'+T(32,434,'Equipos ordenados por frecuencia','mute'));
+    },
+    grid:function(seed){
+      var r=rng(seed),d='',i,j,q,k;
+      for(j=0;j<10;j++)for(i=0;i<17;i++){
+        q=r();k=q>.8?'on acc':q>.4?'on':'';
+        d+='<circle cx="'+(44+i*19)+'" cy="'+(150+j*19)+'" r="5" class="dot '+k+'"'+(k.indexOf('acc')>-1?' style="animation-delay:'+(r()*2.6).toFixed(2)+'s"':'')+'/>';
+      }
+      return S(T(32,52,'Plano interactivo','fg')+T(32,70,'170 espacios','mute')+d+
+        T(32,400,'Ocupado','mute')+'<circle cx="104" cy="397" r="4" class="dot on"/>'+
+        T(124,400,'En vivo','mute')+'<circle cx="170" cy="397" r="4" class="dot acc"/>'+
+        T(32,440,'Sincronización &lt; 500 ms','acc'));
+    },
+    ticks:function(){
+      var L=['Batería y alimentación','Hélices y sujeción','Superficies de control','Enlace de control','Peso y balance','Zona despejada','Piloto al mando','Permisos','Go / No-go'],o='',y,i;
+      for(i=0;i<L.length;i++){
+        y=112+i*38;
+        o+='<rect x="34" y="'+y+'" width="20" height="20" class="ln"/><path class="chk" d="M39 '+(y+10)+' l4 4 l8 -9"/>'+T(68,y+14,L[i],'fg','start','low');
+      }
+      return S(T(32,52,'Verificación previa','fg')+T(32,70,'Antes de cada operación','mute')+o+T(32,484,'20 pruebas · 0 incidentes','acc'));
+    },
+    heat:function(seed){
+      var r=rng(seed),o='',i,j,q,hot;
+      for(j=0;j<9;j++)for(i=0;i<12;i++){
+        hot=(i===3||i===4||j===5)?1.8:1;
+        q=Math.min(1,Math.pow(r(),2)*hot);
+        o+='<rect x="'+(44+i*26)+'" y="'+(120+j*26)+'" width="22" height="22" fill="'+(q>.7?'var(--accent)':'var(--fg)')+'" fill-opacity="'+(q>.7?.95:(.06+q*.5)).toFixed(2)+'"/>';
+      }
+      return S(T(32,52,'Reparaciones recurrentes','fg')+T(32,70,'SRM / AD por zona','mute')+o+T(32,380,'Zona de estructura →','mute')+T(32,400,'Mayor recurrencia','acc'));
+    },
+    line:function(seed){
+      var r=rng(seed),p=[],v=240,i,d;
+      for(i=0;i<40;i++){v+=(r()-.5)*70;v=Math.max(120,Math.min(420,v));p.push((32+i*8.6).toFixed(1)+','+(400-v/600*260).toFixed(1))}
+      var last=p[p.length-1].split(',');
+      return S(T(32,52,'Latencia entre dispositivos','fg')+T(32,70,'Firestore en tiempo real','mute')+
+        '<line class="ln" x1="32" x2="368" y1="400" y2="400"/><line class="ln dash" x1="32" x2="368" y1="183" y2="183"/>'+T(368,175,'500 ms','mute','end')+
+        '<path class="area" d="M'+p.join(' L')+' L'+last[0]+',400 L32,400Z"/><polyline class="cum" points="'+p.join(' ')+'"/>'+
+        '<circle cx="'+last[0]+'" cy="'+last[1]+'" r="4" fill="var(--accent)"/>');
+    },
+    ring:function(){
+      var o='',i,a;
+      for(i=0;i<48;i++){a=i/48*Math.PI*2;o+='<line class="ln" x1="'+(200+Math.cos(a)*126).toFixed(1)+'" y1="'+(250+Math.sin(a)*126).toFixed(1)+'" x2="'+(200+Math.cos(a)*(i%4?134:142)).toFixed(1)+'" y2="'+(250+Math.sin(a)*(i%4?134:142)).toFixed(1)+'"/>'}
+      return S(T(32,52,'Proyecto UAV','fg')+T(32,70,'Hitos cumplidos','mute')+o+
+        '<circle cx="200" cy="250" r="104" fill="none" stroke="var(--accent)" stroke-width="6"/>'+
+        '<text x="200" y="272" class="big" text-anchor="middle">100%</text>'+T(200,440,'Presupuesto $2,500','mute','middle'));
+    }
+  };
+  $$('[data-v]').forEach(function(el){el.innerHTML=V[el.dataset.v](+el.dataset.seed||1)});
+
+  var tiles=[
+    ['pareto',3,'SAP PM','22vw','3/4','0'],
+    ['grid',5,'DoctorSV','17vw','4/5','7vw'],
+    ['ticks',1,'UAV','25vw','4/5','0'],
+    ['line',7,'Latencia','15vw','3/4','4vw'],
+    ['heat',2,'SRM / AD','21vw','4/5','10vw'],
+    ['ring',1,'Hitos','23vw','4/5','2vw'],
+    ['pareto',9,'MTBF','17vw','3/4','8vw'],
+    ['grid',11,'Tiempo real','24vw','4/5','0']
+  ];
+  var strip=$('#strip');
+  strip.innerHTML=tiles.map(function(t){
+    return '<figure class="tile" style="--w:'+t[3]+';--ar:'+t[4]+';--mt:'+t[5]+'"><figcaption class="mono">'+t[2]+'</figcaption><div class="zoom">'+V[t[0]](t[1])+'</div></figure>';
+  }).join('');
+
+  var words=['React','Vite','Tailwind','Firebase','Python','Pandas','SAP PM','AMOS','JMeter','Rust','RAC 145','Pareto','MTBF','Apps Script'];
+  var wl=words.map(function(w){return '<span>'+w+'</span>'}).join('');
+  $('#track').innerHTML=wl+wl;
+
+  /* ---------- Palabra gigante ajustada al ancho ---------- */
+  var wm=$('.wm-in');
+  wm.innerHTML=wm.textContent.split('').map(function(c){return '<span class="ch">'+c+'</span>'}).join('');
+  function fit(){
+    var box=$('.hero .wrap'),cs=getComputedStyle(box);
+    var W=box.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+    wm.style.fontSize='100px';
+    var w=wm.getBoundingClientRect().width;
+    if(w>0) wm.style.fontSize=(100*W/w*0.995)+'px';
+  }
+  fit();
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){fit();if(window.ScrollTrigger)ScrollTrigger.refresh()});
+  addEventListener('resize',fit);
+
+  /* ---------- Copiar correo ---------- */
+  var flash=$('#flash');
+  $('#copy').addEventListener('click',function(){
+    var mail=$('#mail');
+    function ok(m){flash.textContent=m;setTimeout(function(){flash.textContent=''},2200)}
+    function fallback(){var r=document.createRange();r.selectNodeContents(mail);var s=getSelection();s.removeAllRanges();s.addRange(r);ok('Selecciónalo y cópialo')}
+    try{navigator.clipboard.writeText(mail.textContent).then(function(){ok('Copiado')},fallback)}catch(e){fallback()}
+  });
+
+  /* ---------- Animación ---------- */
+  if(reduce||!window.gsap||!window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  if(window.Lenis){
+    var lenis=new Lenis({lerp:.09});
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(function(t){lenis.raf(t*1000)});
+    gsap.ticker.lagSmoothing(0);
+    document.addEventListener('click',function(e){
+      var a=e.target.closest&&e.target.closest('a[href^="#"]');
+      if(!a) return;
+      var id=a.getAttribute('href').slice(1),el=id==='top'?0:document.getElementById(id);
+      if(el===null) return;
+      e.preventDefault();
+      lenis.scrollTo(el,{offset:id==='top'?0:-10,duration:1.6});
+    });
+  }
+
+  gsap.to('.progress',{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:.2}});
+
+  var intro=gsap.timeline({defaults:{ease:'expo.out'}});
+  intro.from('.ch',{yPercent:115,duration:1.3,stagger:.05})
+       .from('.eyebrow,.lead,.meta div',{y:24,opacity:0,duration:1,stagger:.08},'-=.9')
+       .from('.tile',{y:90,opacity:0,duration:1.4,stagger:.07},'-=1');
+
+  gsap.to(strip,{x:function(){return -(strip.scrollWidth-innerWidth*.7)},ease:'none',
+    scrollTrigger:{trigger:'.strip-wrap',start:'top bottom',end:'bottom top',scrub:1,invalidateOnRefresh:true}});
+  $$('.tile').forEach(function(t,i){
+    var sp=[-14,10,-22,8,-18,12,-10,16][i%8];
+    gsap.fromTo(t,{yPercent:-sp/2},{yPercent:sp/2,ease:'none',scrollTrigger:{trigger:'.strip-wrap',start:'top bottom',end:'bottom top',scrub:true}});
+    gsap.fromTo($('.zoom',t),{scale:1.25},{scale:1.02,ease:'none',scrollTrigger:{trigger:'.strip-wrap',start:'top bottom',end:'bottom top',scrub:true}});
+  });
+
+  $$('.frame').forEach(function(f){
+    gsap.fromTo($('.zoom',f),{scale:1.32,yPercent:-7},{scale:1.12,yPercent:7,ease:'none',
+      scrollTrigger:{trigger:f,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+
+  $$('.rv').forEach(function(el){
+    gsap.from(el,{y:38,opacity:.15,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 92%',once:true}});
+  });
+
+  $$('.num').forEach(function(el){
+    var to=+el.dataset.to;if(!to) return;
+    var pre=el.dataset.pre||'',suf=el.dataset.suf||'',o={v:0};
+    ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:function(){
+      gsap.fromTo(o,{v:0},{v:to,duration:1.8,ease:'power2.out',onUpdate:function(){el.textContent=pre+Math.round(o.v)+suf}});
+    }});
+  });
+})();
+</script>
+</body>
+</html>

@@ -70,10 +70,12 @@ h3{font-weight:300;font-size:clamp(1.6rem,2.8vw,2.6rem);line-height:1.05;letter-
 .strip{display:flex;align-items:flex-start;gap:clamp(.6rem,1.4vw,1.4rem);width:max-content;margin-left:-6vw;will-change:transform}
 .tile{flex:none;position:relative;overflow:hidden;background:var(--panel);width:clamp(150px,var(--w),460px);aspect-ratio:var(--ar);margin-top:var(--mt)}
 .tile .zoom,.frame .zoom{position:absolute;inset:0;will-change:transform}
-.tile figcaption{position:absolute;left:.7rem;top:.6rem;z-index:2;color:var(--mute);pointer-events:none}
 svg{display:block;width:100%;height:100%}
-svg .t{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase}
-svg .t.mute{fill:var(--mute)} svg .t.fg{fill:var(--fg)} svg .t.acc{fill:var(--accent)} svg .t.low{text-transform:none;letter-spacing:.02em;font-size:11px}
+svg .t{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+svg .t.mute{fill:var(--mute)} svg .t.fg{fill:var(--fg)} svg .t.acc{fill:var(--accent)} svg .t.low{text-transform:none;letter-spacing:.02em;font-size:13px}
+svg .t[y="52"]{font-size:13px}
+.tile svg .t[y="52"]{font-size:17px}
+.tile svg .t:not([y="52"]):not(.low),.tile svg circle[cy="397"]{display:none}
 svg .ln{stroke:var(--fg);stroke-opacity:.2;fill:none;stroke-width:1}
 svg .dash{stroke-dasharray:3 4}
 svg .cum{stroke:var(--fg);stroke-width:1.5;fill:none}
@@ -102,9 +104,9 @@ section.block{padding-block:clamp(5rem,12vw,12rem)}
 .proj{display:grid;grid-template-columns:repeat(12,1fr);gap:2.5rem 1.5rem;align-items:center;padding-block:clamp(2.5rem,6vw,6rem);border-top:1px solid var(--line)}
 .proj:first-of-type{border-top:0;padding-top:0}
 .proj-text{grid-column:1/span 5;display:flex;flex-direction:column;gap:1.4rem;min-width:0}
-.proj .frame{grid-column:7/span 6}
+.proj .vis{grid-column:7/span 6;min-width:0}
 .proj.flip .proj-text{grid-column:8/span 5;grid-row:1}
-.proj.flip .frame{grid-column:1/span 6;grid-row:1}
+.proj.flip .vis{grid-column:1/span 6;grid-row:1}
 .frame{position:relative;overflow:hidden;background:var(--panel);aspect-ratio:4/5;max-height:80vh;width:100%}
 .cap{margin-top:.7rem;color:var(--dim)}
 .role{color:var(--mute)}
@@ -155,7 +157,7 @@ footer a:hover{color:var(--fg)}
 @media (max-width:900px){
   .lead,.meta{grid-column:1/-1}
   .proj-text,.proj.flip .proj-text{grid-column:1/-1;grid-row:auto}
-  .proj .frame,.proj.flip .frame{grid-column:1/-1;grid-row:auto}
+  .proj .vis,.proj.flip .vis{grid-column:1/-1;grid-row:auto}
   .stat,.row{grid-template-columns:1fr}
   .nav nav a:nth-child(n+4){display:none}
 }
@@ -218,7 +220,7 @@ footer a:hover{color:var(--fg)}
           </ul>
           <ul class="tags mono"><li>Firebase Firestore</li><li>Cloud Storage</li><li>MTBF</li><li>Pareto</li><li>Multi-rol</li></ul>
         </div>
-        <div>
+        <div class="vis">
           <figure class="frame"><div class="zoom" data-v="pareto" data-seed="3"></div></figure>
           <p class="cap mono">Ilustración del tipo de análisis, no son datos reales</p>
         </div>
@@ -237,7 +239,7 @@ footer a:hover{color:var(--fg)}
           </ul>
           <ul class="tags mono"><li>React 18</li><li>Vite</li><li>Tailwind CSS</li><li>Firestore</li><li>Apps Script</li><li>RBAC</li><li>Error Boundaries</li></ul>
         </div>
-        <div>
+        <div class="vis">
           <figure class="frame"><div class="zoom" data-v="grid" data-seed="5"></div></figure>
           <p class="cap mono">Ilustración del plano de 170 espacios</p>
         </div>
@@ -254,7 +256,7 @@ footer a:hover{color:var(--fg)}
           </ul>
           <ul class="tags mono"><li>Control de inventario</li><li>Trazabilidad documental</li><li>Checklists</li><li>Gestión de proveedores</li></ul>
         </div>
-        <div>
+        <div class="vis">
           <figure class="frame"><div class="zoom" data-v="ticks" data-seed="1"></div></figure>
           <p class="cap mono">Ilustración de una verificación previa</p>
         </div>
@@ -271,7 +273,7 @@ footer a:hover{color:var(--fg)}
           </ul>
           <ul class="tags mono"><li>React</li><li>FastAPI</li><li>PostgreSQL / SQLite</li><li>pytest</li><li>Swagger</li><li>Firebase</li></ul>
         </div>
-        <div>
+        <div class="vis">
           <figure class="frame"><div class="zoom" data-v="heat" data-seed="2"></div></figure>
           <p class="cap mono">Ilustración de recurrencia por zona</p>
         </div>
@@ -476,18 +478,18 @@ footer a:hover{color:var(--fg)}
   $$('[data-v]').forEach(function(el){el.innerHTML=V[el.dataset.v](+el.dataset.seed||1)});
 
   var tiles=[
-    ['pareto',3,'SAP PM','22vw','3/4','0'],
+    ['pareto',3,'SAP PM','22vw','4/5','0'],
     ['grid',5,'DoctorSV','17vw','4/5','7vw'],
     ['ticks',1,'UAV','25vw','4/5','0'],
-    ['line',7,'Latencia','15vw','3/4','4vw'],
+    ['line',7,'Latencia','15vw','4/5','4vw'],
     ['heat',2,'SRM / AD','21vw','4/5','10vw'],
     ['ring',1,'Hitos','23vw','4/5','2vw'],
-    ['pareto',9,'MTBF','17vw','3/4','8vw'],
+    ['pareto',9,'MTBF','17vw','4/5','8vw'],
     ['grid',11,'Tiempo real','24vw','4/5','0']
   ];
   var strip=$('#strip');
   strip.innerHTML=tiles.map(function(t){
-    return '<figure class="tile" style="--w:'+t[3]+';--ar:'+t[4]+';--mt:'+t[5]+'"><figcaption class="mono">'+t[2]+'</figcaption><div class="zoom">'+V[t[0]](t[1])+'</div></figure>';
+    return '<figure class="tile" style="--w:'+t[3]+';--ar:'+t[4]+';--mt:'+t[5]+'"><div class="zoom">'+V[t[0]](t[1])+'</div></figure>';
   }).join('');
 
   var words=['React','Vite','Tailwind','Firebase','Python','Pandas','SAP PM','AMOS','JMeter','Rust','FastAPI','PostgreSQL','pytest','Git','RAC 145','Pareto','MTBF','Apps Script'];
@@ -548,11 +550,11 @@ footer a:hover{color:var(--fg)}
   $$('.tile').forEach(function(t,i){
     var sp=[-14,10,-22,8,-18,12,-10,16][i%8];
     gsap.fromTo(t,{yPercent:-sp/2},{yPercent:sp/2,ease:'none',scrollTrigger:{trigger:'.strip-wrap',start:'top bottom',end:'bottom top',scrub:true}});
-    gsap.fromTo($('.zoom',t),{scale:1.25},{scale:1.02,ease:'none',scrollTrigger:{trigger:'.strip-wrap',start:'top bottom',end:'bottom top',scrub:true}});
+    gsap.fromTo($('.zoom',t),{scale:1.1},{scale:1,ease:'none',scrollTrigger:{trigger:'.strip-wrap',start:'top bottom',end:'bottom top',scrub:true}});
   });
 
   $$('.frame').forEach(function(f){
-    gsap.fromTo($('.zoom',f),{scale:1.32,yPercent:-7},{scale:1.12,yPercent:7,ease:'none',
+    gsap.fromTo($('.zoom',f),{scale:1.1,yPercent:-2.5},{scale:1.05,yPercent:2.5,ease:'none',
       scrollTrigger:{trigger:f,start:'top bottom',end:'bottom top',scrub:true}});
   });
 

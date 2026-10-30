@@ -189,7 +189,7 @@ footer a:hover{color:var(--fg)}
         <dl class="meta">
           <div><dt>Rol</dt><dd>Full-stack, datos y operaciones aeronáuticas</dd></div>
           <div><dt>Formación</dt><dd>Ing. Aeronáutica, UDB, 5.º año</dd></div>
-          <div><dt>Idiomas</dt><dd>Español, inglés B1</dd></div>
+          <div><dt>Desde</dt><dd>Freelance en 2022, React hace 2 años</dd></div>
           <div><dt>Base</dt><dd><span class="dot-live" aria-hidden="true"></span>San Salvador, El Salvador</dd></div>
         </dl>
       </div>
@@ -214,7 +214,7 @@ footer a:hover{color:var(--fg)}
             <li>Monitoreo en tiempo real de más de 260 avisos y órdenes de trabajo (transacciones IW28 e IW29).</li>
             <li>Ingesta masiva con upsert y sanitización estricta de archivos Excel y CSV.</li>
             <li>Filtros por estado, tipo, ubicación técnica, equipo y fecha. Métricas MTBF, Pareto 80/20 y gasto real en USD por orden.</li>
-            <li>Alertas de severidad según la antigüedad del backlog y acceso por rol: Master, Operador y Auditor.</li>
+            <li>Monitor de alertas por antigüedad de backlog, persistencia en Firebase y acceso por rol: Master, Operador y Auditor.</li>
           </ul>
           <ul class="tags mono"><li>Firebase Firestore</li><li>Cloud Storage</li><li>MTBF</li><li>Pareto</li><li>Multi-rol</li></ul>
         </div>
@@ -233,8 +233,9 @@ footer a:hover{color:var(--fg)}
             <li>Sincronización en tiempo real con latencia menor a 500 ms entre dispositivos.</li>
             <li>Control de acceso por roles (RBAC) en varios niveles, auto check-in, asignación algorítmica y reportes ejecutivos en vivo.</li>
             <li>Integración bidireccional con Google Sheets mediante Apps Script y endpoints REST para nóminas e inventario.</li>
+            <li>Disponibilidad protegida con Error Boundaries y pruebas de despliegue continuo.</li>
           </ul>
-          <ul class="tags mono"><li>React 18</li><li>Vite</li><li>Tailwind CSS</li><li>Firestore</li><li>Apps Script</li><li>RBAC</li></ul>
+          <ul class="tags mono"><li>React 18</li><li>Vite</li><li>Tailwind CSS</li><li>Firestore</li><li>Apps Script</li><li>RBAC</li><li>Error Boundaries</li></ul>
         </div>
         <div>
           <figure class="frame"><div class="zoom" data-v="grid" data-seed="5"></div></figure>
@@ -261,13 +262,14 @@ footer a:hover{color:var(--fg)}
 
       <article class="proj flip">
         <div class="proj-text rv">
-          <p class="mono role">Colíder de equipo de 4 · Curso DDP106, UDB · 2026</p>
-          <h3>Dashboard de fallas estructurales SRM/AD</h3>
+          <p class="mono role">Proyecto académico · UDB, curso DDP106 · 2026</p>
+          <h3>SRM/AD Insight</h3>
           <ul class="pts">
-            <li>Diseño de un tablero para detectar fallas estructurales recurrentes en flota a partir de datos de reparación.</li>
-            <li>EAP, matriz de marco lógico, Project Charter y planificación de alcance y calidad con enfoque PMBOK/PMI.</li>
+            <li>Aplicación web con datos simulados para priorizar inspecciones de mantenimiento aeronáutico a partir de fallas estructurales recurrentes. Desplegada en Firebase.</li>
+            <li>16 casos de prueba funcional con 100% de exactitud, 2,500 registros verificados sin duplicados y 14 endpoints validados con Swagger y pytest.</li>
+            <li>Defectos documentados y corregidos: desbordamiento horizontal en móvil, fallo en la exportación CSV y una calificación de riesgo sesgada (17 de 40 aeronaves en rojo antes de corregirla).</li>
           </ul>
-          <ul class="tags mono"><li>SRM</li><li>AD</li><li>PMBOK</li><li>Marco lógico</li><li>Project Charter</li></ul>
+          <ul class="tags mono"><li>React</li><li>FastAPI</li><li>PostgreSQL / SQLite</li><li>pytest</li><li>Swagger</li><li>Firebase</li></ul>
         </div>
         <div>
           <figure class="frame"><div class="zoom" data-v="heat" data-seed="2"></div></figure>
@@ -281,7 +283,7 @@ footer a:hover{color:var(--fg)}
     <div class="wrap">
       <div class="head">
         <h2>Impacto<br>medido</h2>
-        <p class="mono">6 resultados del CV</p>
+        <p class="mono">8 resultados del CV</p>
       </div>
       <ul class="stats">
         <li class="stat rv"><span class="num" data-to="260" data-suf="+">260+</span><p>avisos y órdenes de trabajo de SAP PM en monitoreo continuo<span class="src mono">Dashboard de mantenimiento · Coca-Cola</span></p></li>
@@ -289,6 +291,8 @@ footer a:hover{color:var(--fg)}
         <li class="stat rv"><span class="num" data-pre="&lt;" data-to="500" data-suf=" ms">&lt;500 ms</span><p>de latencia entre dispositivos con Firestore en tiempo real<span class="src mono">Telemedicina · DoctorSV</span></p></li>
         <li class="stat rv"><span class="num" data-to="100" data-suf="%">100%</span><p>de los hitos cumplidos en 2 años con $2,500 de presupuesto<span class="src mono">Proyecto UAV · FAS</span></p></li>
         <li class="stat rv"><span class="num" data-pre="−" data-to="40" data-suf="%">−40%</span><p>en tiempos de espera de materiales críticos<span class="src mono">Proyecto UAV · FAS</span></p></li>
+        <li class="stat rv"><span class="num" data-to="2500" data-suf="">2,500</span><p>registros verificados sin un solo duplicado<span class="src mono">SRM/AD Insight · UDB</span></p></li>
+        <li class="stat rv"><span class="num" data-to="14">14</span><p>endpoints de API validados con Swagger y pytest<span class="src mono">SRM/AD Insight · UDB</span></p></li>
         <li class="stat rv"><span class="num" data-to="0">0</span><p>incidentes de seguridad en 20 pruebas, 4 vuelos y 8 meses de práctica en hangar<span class="src mono">FAS · ATS</span></p></li>
       </ul>
     </div>
@@ -297,17 +301,25 @@ footer a:hover{color:var(--fg)}
   <section class="block" id="trayectoria">
     <div class="wrap">
       <div class="head">
-        <h2>Operaciones<br>y regulación</h2>
-        <p class="mono">Donde aprendí a trabajar con normas</p>
+        <h2>Trayectoria</h2>
+        <p class="mono">Desarrollo, operaciones y regulación</p>
       </div>
       <div class="rows">
+        <article class="row rv">
+          <p class="mono">2022 a hoy</p>
+          <div><h3>Desarrollador freelance</h3><p class="org">Napo's Developer · Desarrollo de software y gestión de datos</p></div>
+          <ul class="pts">
+            <li>Aplicaciones web y soluciones de gestión de datos para clientes, desde los requerimientos hasta la entrega y el soporte.</li>
+            <li>React (2 años), Python con Pandas y NumPy, ETL, Git/GitHub y Linux.</li>
+          </ul>
+        </article>
         <article class="row rv">
           <p class="mono">2026 a hoy</p>
           <div><h3>Operador de almacén</h3><p class="org">Avianca · Recepción, custodia y despacho de materiales aeronáuticos</p></div>
           <ul class="pts">
             <li>Verifico la trazabilidad de componentes (FAA 8130-3, EASA Form 1, CoC), número de parte, serie y vida útil, y registro cada movimiento en AMOS y SAP.</li>
-            <li>Resguardo rotables y reparables con etiquetado Serviceable, Unserviceable y Scrap, protección ESD y control de químicos (HazMat).</li>
-            <li>Atiendo despacho de piezas y kits para órdenes de trabajo, administro el Tool Crib con control FOD y hago conteos cíclicos.</li>
+            <li>Resguardo rotables y reparables con etiquetado Serviceable, Unserviceable y Scrap, protección ESD, y controlo consumibles y químicos (HazMat) con fechas de vencimiento y temperatura controlada.</li>
+            <li>Atiendo despacho de piezas y kits para órdenes de trabajo, administro el Tool Crib con control FOD, hago conteos cíclicos, movilización interna y embalaje técnico para talleres externos.</li>
           </ul>
         </article>
         <article class="row rv">
@@ -342,10 +354,10 @@ footer a:hover{color:var(--fg)}
     </div>
     <div class="wrap">
       <div class="skills">
-        <div class="rv"><h3>Desarrollo</h3><ul><li>React, Vite, Tailwind CSS</li><li>JavaScript, HTML, CSS</li><li>Firebase: Firestore, Auth, Hosting, Storage</li><li>Google Apps Script y APIs REST</li><li>RBAC, Rust</li></ul></div>
-        <div class="rv"><h3>Datos y calidad</h3><ul><li>Python: Pandas, NumPy, Matplotlib</li><li>SAP PM, MTBF, Pareto</li><li>Dashboards y KPIs</li><li>Apache JMeter Intro y Pro</li><li>Excel avanzado</li></ul></div>
-        <div class="rv"><h3>Operaciones MRO</h3><ul><li>AMOS y SAP</li><li>Recepción, custodia y despacho</li><li>Trazabilidad documental</li><li>Gestión de scrap</li><li>FOD, ESD, HazMat</li></ul></div>
-        <div class="rv"><h3>Normativa</h3><ul><li>RAC 145 mantenimiento</li><li>RAC 19 SMS</li><li>OACI Anexos 6 y 8</li><li>Sistemas Integrados de Gestión</li></ul></div>
+        <div class="rv"><h3>Desarrollo</h3><ul><li>React, Vite, Tailwind CSS</li><li>JavaScript, HTML, CSS</li><li>Python y FastAPI, APIs REST</li><li>Git, GitHub, Linux</li><li>Firebase: Firestore, Auth, Hosting, Storage</li><li>Google Apps Script</li><li>RBAC, Rust</li></ul></div>
+        <div class="rv"><h3>Datos y calidad</h3><ul><li>Python: Pandas, NumPy, Matplotlib</li><li>SAP PM, MTBF, Pareto</li><li>Dashboards y KPIs</li><li>PostgreSQL, SQLite, ETL</li><li>Pruebas funcionales y de API: Swagger, pytest, JMeter</li><li>Excel avanzado</li></ul></div>
+        <div class="rv"><h3>Operaciones MRO</h3><ul><li>AMOS y SAP</li><li>Recepción, custodia y despacho</li><li>Trazabilidad documental</li><li>Conteos cíclicos y gestión de scrap</li><li>FOD, ESD, HazMat</li></ul></div>
+        <div class="rv"><h3>Normativa</h3><ul><li>RAC 145 mantenimiento</li><li>RAC 19 SMS</li><li>OACI Anexos 6 y 8</li><li>Mercancías peligrosas</li><li>Sistemas Integrados de Gestión</li></ul></div>
         <div class="rv"><h3>Ingeniería</h3><ul><li>Autodesk Inventor, Onshape</li><li>ANSYS</li><li>Informes regulatorios</li><li>Registros de aeronavegabilidad</li></ul></div>
       </div>
     </div>
@@ -360,7 +372,7 @@ footer a:hover{color:var(--fg)}
       <div class="edu">
         <div class="rv"><p class="mono mute">2017 a hoy</p><h3>Ingeniería Aeronáutica</h3><p>Universidad Don Bosco, 5.º año en curso</p></div>
         <div class="rv"><p class="mono mute">Completado</p><h3>Apache JMeter Intro y Pro</h3><p>BlazeMeter University</p></div>
-        <div class="rv"><p class="mono mute">Idiomas</p><h3>Español nativo, inglés B1</h3><p>Lectura técnica fluida de manuales AMM, CMM y SRM</p></div>
+        <div class="rv"><p class="mono mute">Idiomas</p><h3>Español nativo, inglés B1</h3><p>Lectura y escritura técnica fluida de manuales AMM, CMM y SRM</p></div>
       </div>
     </div>
   </section>
@@ -478,7 +490,7 @@ footer a:hover{color:var(--fg)}
     return '<figure class="tile" style="--w:'+t[3]+';--ar:'+t[4]+';--mt:'+t[5]+'"><figcaption class="mono">'+t[2]+'</figcaption><div class="zoom">'+V[t[0]](t[1])+'</div></figure>';
   }).join('');
 
-  var words=['React','Vite','Tailwind','Firebase','Python','Pandas','SAP PM','AMOS','JMeter','Rust','RAC 145','Pareto','MTBF','Apps Script'];
+  var words=['React','Vite','Tailwind','Firebase','Python','Pandas','SAP PM','AMOS','JMeter','Rust','FastAPI','PostgreSQL','pytest','Git','RAC 145','Pareto','MTBF','Apps Script'];
   var wl=words.map(function(w){return '<span>'+w+'</span>'}).join('');
   $('#track').innerHTML=wl+wl;
 
@@ -552,7 +564,7 @@ footer a:hover{color:var(--fg)}
     var to=+el.dataset.to;if(!to) return;
     var pre=el.dataset.pre||'',suf=el.dataset.suf||'',o={v:0};
     ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:function(){
-      gsap.fromTo(o,{v:0},{v:to,duration:1.8,ease:'power2.out',onUpdate:function(){el.textContent=pre+Math.round(o.v)+suf}});
+      gsap.fromTo(o,{v:0},{v:to,duration:1.8,ease:'power2.out',onUpdate:function(){el.textContent=pre+Math.round(o.v).toLocaleString('en-US')+suf}});
     }});
   });
 })();
